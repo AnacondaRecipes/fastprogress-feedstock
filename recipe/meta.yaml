@@ -11,15 +11,16 @@ source:
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  number: 0
+  number: 1
   noarch: python
+  skip: True # [py <36]
 
 requirements:
   host:
-    - python >=3.6
     - pip
+    - python
   run:
-    - python >=3.6
+    - python
 
 test:
   requires:
