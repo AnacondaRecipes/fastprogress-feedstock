@@ -13,17 +13,25 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   number: 0
   noarch: python
+  skip: True # [py<36]
 
 requirements:
   host:
-    - python >=3.6
     - pip
+    - python
+    - numpy
+    - setuptools >=36.2
+    - wheel
   run:
     - python >=3.6
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
     - python <3.10
+    - pip
+  commands:
+    - pip check
   imports:
     - fastprogress
 
