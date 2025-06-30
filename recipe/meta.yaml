@@ -10,9 +10,8 @@ source:
   sha256: 89e28ac1d2a5412aab18ee3f3dfd1ee8b5c1f2f7a44d0add0d0d4f69f0191bfe
 
 build:
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
-  number: 0
-  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+  number: 1
   skip: True # [py<36]
 
 requirements:
@@ -23,12 +22,12 @@ requirements:
     - setuptools >=36.2
     - wheel
   run:
-    - python >=3.6
+    - python
     - {{ pin_compatible('numpy') }}
 
 test:
   requires:
-    - python <3.10
+    - python
     - pip
   commands:
     - pip check
@@ -36,13 +35,19 @@ test:
     - fastprogress
 
 about:
-  home: https://github.com/fastai/fastprogress
+  home: https://github.com/AnswerDotAI/fastprogress
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
   summary: A fast and simple progress bar for Jupyter Notebook and console.
-  dev_url: https://github.com/fastai/fastprogress
-  doc_url: https://github.com/fastai/fastprogress
+  description: |
+    fastprogress is a Python library that provides fast and flexible progress bars for both Jupyter Notebook and console environments. 
+    Created by Sylvain Gugger for fast.ai, it offers advanced features including nested progress bars, real-time graph plotting, 
+    and specialized support for machine learning training loops. The library allows developers to track progress with customizable 
+    comments, update graphs dynamically during training, and seamlessly switch between notebook and console displays. It's 
+    particularly popular in the machine learning community for visualizing training progress and metrics in real-time.
+  dev_url: https://github.com/AnswerDotAI/fastprogress
+  doc_url: https://github.com/AnswerDotAI/fastprogress
 
 extra:
   recipe-maintainers:
