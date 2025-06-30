@@ -35,7 +35,7 @@ test:
     - fastprogress
 
 about:
-  home: https://github.com/fastai/fastprogress
+  home: https://github.com/AnswerDotAI/fastprogress
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
@@ -46,8 +46,8 @@ about:
     and specialized support for machine learning training loops. The library allows developers to track progress with customizable 
     comments, update graphs dynamically during training, and seamlessly switch between notebook and console displays. It's 
     particularly popular in the machine learning community for visualizing training progress and metrics in real-time.
-  dev_url: https://github.com/fastai/fastprogress
-  doc_url: https://github.com/fastai/fastprogress
+  dev_url: https://github.com/AnswerDotAI/fastprogress
+  doc_url: https://github.com/AnswerDotAI/fastprogress
 
 extra:
   recipe-maintainers:
