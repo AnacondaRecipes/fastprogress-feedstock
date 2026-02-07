@@ -12,27 +12,28 @@ source:
 build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   number: 0
-  skip: true  # [py<36]
+  skip: true  # [py<310]
 
 requirements:
   host:
     - pip
     - python
-    - numpy
-    - setuptools >=36.2
-    - wheel
+    - setuptools >=64.0
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - fastcore >=1.10.0
+    - python-fasthtml >=0.12.34
+    # Import test error:
+    # ModuleNotFoundError: No module named 'IPython'
+    - ipython
 
 test:
+  imports:
+    - fastprogress
   requires:
-    - python
     - pip
   commands:
     - pip check
-  imports:
-    - fastprogress
 
 about:
   home: https://github.com/AnswerDotAI/fastprogress
