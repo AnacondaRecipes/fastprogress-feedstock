@@ -1,38 +1,39 @@
 {% set name = "fastprogress" %}
-{% set version = "1.0.0" %}
+{% set version = "1.1.3" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 89e28ac1d2a5412aab18ee3f3dfd1ee8b5c1f2f7a44d0add0d0d4f69f0191bfe
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 2f7071beb93ce261ddb51d66b243a8517b421563a0107498e5885ed2d9136fca
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
-  number: 1
-  skip: True # [py<36]
+  number: 0
+  skip: true  # [py<310]
 
 requirements:
   host:
     - pip
     - python
-    - numpy
-    - setuptools >=36.2
-    - wheel
+    - setuptools >=64.0
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - fastcore >=1.10.0
+    - python-fasthtml >=0.12.34
+    # Import test error:
+    # ModuleNotFoundError: No module named 'IPython'
+    - ipython
 
 test:
+  imports:
+    - fastprogress
   requires:
-    - python
     - pip
   commands:
     - pip check
-  imports:
-    - fastprogress
 
 about:
   home: https://github.com/AnswerDotAI/fastprogress
@@ -41,10 +42,10 @@ about:
   license_file: LICENSE
   summary: A fast and simple progress bar for Jupyter Notebook and console.
   description: |
-    fastprogress is a Python library that provides fast and flexible progress bars for both Jupyter Notebook and console environments. 
-    Created by Sylvain Gugger for fast.ai, it offers advanced features including nested progress bars, real-time graph plotting, 
-    and specialized support for machine learning training loops. The library allows developers to track progress with customizable 
-    comments, update graphs dynamically during training, and seamlessly switch between notebook and console displays. It's 
+    fastprogress is a Python library that provides fast and flexible progress bars for both Jupyter Notebook and console environments.
+    Created by Sylvain Gugger for fast.ai, it offers advanced features including nested progress bars, real-time graph plotting,
+    and specialized support for machine learning training loops. The library allows developers to track progress with customizable
+    comments, update graphs dynamically during training, and seamlessly switch between notebook and console displays. It's
     particularly popular in the machine learning community for visualizing training progress and metrics in real-time.
   dev_url: https://github.com/AnswerDotAI/fastprogress
   doc_url: https://github.com/AnswerDotAI/fastprogress
